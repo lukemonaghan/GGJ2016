@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PortraitSpin : MonoBehaviour {
+public class PortraitSpin : MonoBehaviour
+{
 
     public int turnSpeed = 3;
     private int spinSpeed;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class UIInGame : MonoBehaviour
 	public List<Image> uiIngredientBar = new List<Image>();
 	public Dictionary<GameParameters.IngredientTypes,int> currentTypes = new Dictionary<GameParameters.IngredientTypes, int>();
 	 
-	public void AddIngredient(Sprite spriteImage,GameParameters.IngredientTypes type)
+	public void AddIngredient(Sprite spriteImage, GameParameters.IngredientTypes type)
 	{
 		// Object Pooling
 		GameObject newIngredient = null;
@@ -57,19 +58,22 @@ public class UIInGame : MonoBehaviour
 		newIngredient.GetComponent<Image>().sprite = spriteImage;
 	}
 
-	void ClearIngredients()
+	private void FixIngredients()
 	{
+		// Clear the images. (Turn them off)
 		foreach (var ingredient in uiIngredientBar)
 		{
 			ingredient.sprite = null;
 			ingredient.gameObject.SetActive(false);
 		}
+		// Clear our actual spell stack
 		currentTypes.Clear();
-    }
+	}
 
 	public void ActivateSpell()
 	{
-		GameParameters.Spell CurrentSpell = null;
+		// Get a list of all avaliable spells
+		var CurrentSpells = new List<GameParameters.Spell>();
 		foreach (var spell in GameParameters.Instance.Spells)
 		{
 			var didPass = true;
@@ -87,22 +91,51 @@ public class UIInGame : MonoBehaviour
 					}
 				}
 			}
+			// If we have all the requiered ingredients, add it.
 			if (didPass)
 			{
-				CurrentSpell = spell;
-				break;
+				CurrentSpells.Add(spell);
 			}
 		}
 
-		if (CurrentSpell == null)
+		// Did we have any applicable spells?
+		if (CurrentSpells.Count == 0)
 		{
 			return;
 		}
+
+		// Sort them.
+		CurrentSpells.Sort(SortSpells);
+
+		// Snag the best spell
+		var CurrentSpell = CurrentSpells[0];
+
+		// Grab our player
 		var controller = FindObjectOfType<PlayerController>();
+
+		// Create the spell effect
 		var obj = Instantiate(CurrentSpell.effect);
 		obj.transform.position = controller.transform.position + controller.transform.forward;
+		var effect = obj.GetComponent<SpellEffect>();
 
-		ClearIngredients();
+		// Add its power
+		foreach (var s in CurrentSpell.ingredients)
+		{
+			effect.power += currentTypes[s.type];
+		}
+
+		// Clear our stack
+		FixIngredients();
 	}
 
+	// Basic sort function
+	private int SortSpells(GameParameters.Spell s1, GameParameters.Spell s2)
+	{
+		var s1n = s1.ingredients.Sum(s => s.minCount);
+		var s2n = s2.ingredients.Sum(s => s.minCount);
+
+		if (s1n < s2n) return 1;
+		if (s1n > s2n) return -1;
+		return 0;
+	}
 }
