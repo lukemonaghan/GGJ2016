@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
-	public CharacterController charController { get {return _charController ?? (_charController = GetComponent<CharacterController>()); } }
+	public CharacterController charController { get {return _charController ?? (_charController = GetComponentInChildren<CharacterController>()); } }
 	private CharacterController _charController;
+	public Animator animator { get { return _animator ?? (_animator = GetComponentInChildren<Animator>()); } }
+	private Animator _animator;
 
 	public float speed = 10;
 	public float pushPower = 2.0f;
-
-	public float health = 100;
 	
 	// Update is called once per frame
 	void Update ()
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 		direction += Vector3.forward * speed * -LYAxis_1;
 		direction += Vector3.right * speed * LXAxis_1;
 
+		animator.SetFloat("Velocity",direction.normalized.magnitude);
 		// Use simplemove on the charController
 		charController.SimpleMove(direction);
 	}
@@ -48,5 +49,9 @@ public class PlayerController : MonoBehaviour
 
 		var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 		body.velocity = pushDir * pushPower;
+	}
+	public override void OnDeath()
+	{
+		Destroy(gameObject);
 	}
 }

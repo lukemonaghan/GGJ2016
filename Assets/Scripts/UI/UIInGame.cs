@@ -70,8 +70,9 @@ public class UIInGame : MonoBehaviour
 		currentTypes.Clear();
 	}
 
-	public void ActivateSpell()
+	public GameParameters.SpellType ActivateSpell(out GameObject newObject)
 	{
+		newObject = null;
 		// Get a list of all avaliable spells
 		var CurrentSpells = new List<GameParameters.Spell>();
 		foreach (var spell in GameParameters.Instance.Spells)
@@ -101,7 +102,7 @@ public class UIInGame : MonoBehaviour
 		// Did we have any applicable spells?
 		if (CurrentSpells.Count == 0)
 		{
-			return;
+			return GameParameters.SpellType.NONE;
 		}
 
 		// Sort them.
@@ -114,9 +115,10 @@ public class UIInGame : MonoBehaviour
 		var controller = FindObjectOfType<PlayerController>();
 
 		// Create the spell effect
-		var obj = Instantiate(CurrentSpell.effect);
-		obj.transform.position = controller.transform.position + controller.transform.forward;
-		var effect = obj.GetComponent<SpellEffect>();
+		newObject = Instantiate(CurrentSpell.effect.gameObject);
+		newObject.transform.position = controller.transform.position + controller.transform.forward;
+		newObject.transform.rotation = controller.transform.rotation;
+		var effect = newObject.GetComponent<SpellEffect>();
 
 		// Add its power
 		foreach (var s in CurrentSpell.ingredients)
@@ -126,6 +128,8 @@ public class UIInGame : MonoBehaviour
 
 		// Clear our stack
 		FixIngredients();
+
+		return CurrentSpell.type;
 	}
 
 	// Basic sort function

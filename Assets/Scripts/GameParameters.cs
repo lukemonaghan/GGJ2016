@@ -29,6 +29,14 @@ public class GameParameters : ScriptableObject
 	}
 
 	[Serializable]
+	public enum SpellType
+	{
+		NONE,
+		Explode,
+		Projectile
+	}
+
+	[Serializable]
 	public class Spell
 	{
 		[Serializable]
@@ -40,13 +48,19 @@ public class GameParameters : ScriptableObject
 
 		public IngredientCount[] ingredients;
 		public SpellEffect effect;
+		public SpellType type;
 	}
 
 	public List<Spell> Spells = new List<Spell>();
+
+	public GameObject[] woodBits;
+
 
 	[RuntimeInitializeOnLoadMethod()]
 	public static void CreateLevel()
 	{
 		Debug.Log("Bootstrap");
 	}
+
+
 }

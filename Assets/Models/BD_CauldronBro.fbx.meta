@@ -6,11 +6,53 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: CauldronBro
+    100004: joint1
+    100006: joint10
+    100008: joint11
+    100010: joint12
+    100012: joint13
+    100014: joint14
+    100016: joint15
+    100018: joint16
+    100020: joint17
+    100022: joint2
+    100024: joint3
+    100026: joint4
+    100028: joint5
+    100030: joint6
+    100032: joint7
+    100034: joint8
+    100036: joint9
     400000: //RootNode
+    400002: CauldronBro
+    400004: joint1
+    400006: joint10
+    400008: joint11
+    400010: joint12
+    400012: joint13
+    400014: joint14
+    400016: joint15
+    400018: joint16
+    400020: joint17
+    400022: joint2
+    400024: joint3
+    400026: joint4
+    400028: joint5
+    400030: joint6
+    400032: joint7
+    400034: joint8
+    400036: joint9
     2300000: //RootNode
     3300000: //RootNode
     4300000: polySurface1
+    4300002: CauldronBro
+    7400000: Run
+    7400002: Idle
+    7400004: Projectile
+    7400006: Explode
     9500000: //RootNode
+    13700000: CauldronBro
   materials:
     importMaterials: 0
     materialName: 0
@@ -31,11 +73,275 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 2
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CauldronBro
+        weight: 1
+      - path: joint7
+        weight: 1
+      - path: joint7/joint1
+        weight: 1
+      - path: joint7/joint1/joint2
+        weight: 1
+      - path: joint7/joint1/joint2/joint3
+        weight: 1
+      - path: joint7/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint7/joint6
+        weight: 1
+      - path: joint7/joint6/joint5
+        weight: 1
+      - path: joint7/joint6/joint8
+        weight: 1
+      - path: joint7/joint6/joint8/joint9
+        weight: 1
+      - path: joint7/joint6/joint8/joint9/joint10
+        weight: 1
+      - path: joint7/joint6/joint11
+        weight: 1
+      - path: joint7/joint6/joint11/joint12
+        weight: 1
+      - path: joint7/joint6/joint11/joint12/joint13
+        weight: 1
+      - path: joint7/joint14
+        weight: 1
+      - path: joint7/joint14/joint15
+        weight: 1
+      - path: joint7/joint14/joint15/joint16
+        weight: 1
+      - path: joint7/joint14/joint15/joint16/joint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 18
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CauldronBro
+        weight: 1
+      - path: joint7
+        weight: 1
+      - path: joint7/joint1
+        weight: 1
+      - path: joint7/joint1/joint2
+        weight: 1
+      - path: joint7/joint1/joint2/joint3
+        weight: 1
+      - path: joint7/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint7/joint6
+        weight: 1
+      - path: joint7/joint6/joint5
+        weight: 1
+      - path: joint7/joint6/joint8
+        weight: 1
+      - path: joint7/joint6/joint8/joint9
+        weight: 1
+      - path: joint7/joint6/joint8/joint9/joint10
+        weight: 1
+      - path: joint7/joint6/joint11
+        weight: 1
+      - path: joint7/joint6/joint11/joint12
+        weight: 1
+      - path: joint7/joint6/joint11/joint12/joint13
+        weight: 1
+      - path: joint7/joint14
+        weight: 1
+      - path: joint7/joint14/joint15
+        weight: 1
+      - path: joint7/joint14/joint15/joint16
+        weight: 1
+      - path: joint7/joint14/joint15/joint16/joint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Projectile
+      takeName: Take 001
+      firstFrame: 42
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CauldronBro
+        weight: 1
+      - path: joint7
+        weight: 1
+      - path: joint7/joint1
+        weight: 1
+      - path: joint7/joint1/joint2
+        weight: 1
+      - path: joint7/joint1/joint2/joint3
+        weight: 1
+      - path: joint7/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint7/joint6
+        weight: 1
+      - path: joint7/joint6/joint5
+        weight: 1
+      - path: joint7/joint6/joint8
+        weight: 1
+      - path: joint7/joint6/joint8/joint9
+        weight: 1
+      - path: joint7/joint6/joint8/joint9/joint10
+        weight: 1
+      - path: joint7/joint6/joint11
+        weight: 1
+      - path: joint7/joint6/joint11/joint12
+        weight: 1
+      - path: joint7/joint6/joint11/joint12/joint13
+        weight: 1
+      - path: joint7/joint14
+        weight: 1
+      - path: joint7/joint14/joint15
+        weight: 1
+      - path: joint7/joint14/joint15/joint16
+        weight: 1
+      - path: joint7/joint14/joint15/joint16/joint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: Explode
+      takeName: Take 001
+      firstFrame: 67
+      lastFrame: 84
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: CauldronBro
+        weight: 1
+      - path: joint7
+        weight: 1
+      - path: joint7/joint1
+        weight: 1
+      - path: joint7/joint1/joint2
+        weight: 1
+      - path: joint7/joint1/joint2/joint3
+        weight: 1
+      - path: joint7/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: joint7/joint6
+        weight: 1
+      - path: joint7/joint6/joint5
+        weight: 1
+      - path: joint7/joint6/joint8
+        weight: 1
+      - path: joint7/joint6/joint8/joint9
+        weight: 1
+      - path: joint7/joint6/joint8/joint9/joint10
+        weight: 1
+      - path: joint7/joint6/joint11
+        weight: 1
+      - path: joint7/joint6/joint11/joint12
+        weight: 1
+      - path: joint7/joint6/joint11/joint12/joint13
+        weight: 1
+      - path: joint7/joint14
+        weight: 1
+      - path: joint7/joint14/joint15
+        weight: 1
+      - path: joint7/joint14/joint15/joint16
+        weight: 1
+      - path: joint7/joint14/joint15/joint16/joint17
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 100
+    globalScale: 25
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
