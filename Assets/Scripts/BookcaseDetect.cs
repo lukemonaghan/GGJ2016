@@ -3,15 +3,15 @@ using System.Collections;
 
 public class BookcaseDetect : MonoBehaviour {
 
-    public int moveSpeed = 3;
+    public int moveSpeed = 6;
     public int turnSpeed = 3;
-    private Rigidbody rb;
     public bool canFall;
     private Transform myTransform;
     private Transform target;
-    
-	// Use this for initialization
-	void Start () {
+    private Rigidbody rb;
+
+    // Use this for initialization
+    void Start () {
         myTransform = transform;
         target = GameObject.FindWithTag("Player").transform;
         canFall = false;
@@ -32,7 +32,7 @@ public class BookcaseDetect : MonoBehaviour {
         {
             print("Triggered");
             canFall = true;
-            rb.AddForce(Vector3.back * 1500.0f);
+            rb.AddRelativeForce(Vector3.forward * 3500.0f);
         }
     }
 
