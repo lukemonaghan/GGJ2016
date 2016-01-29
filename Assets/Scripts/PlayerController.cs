@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 	private CharacterController _charController;
 
 	public float speed = 10;
+
+	public float health = 100;
 	
 	// Update is called once per frame
 	void Update ()
