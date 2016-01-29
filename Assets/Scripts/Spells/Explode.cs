@@ -33,14 +33,11 @@ public class Explode : SpellEffect
 
 	public void OnCollisionEnter(Collision col)
 	{
-		Debug.Log(col.transform.name);
 		var entity = col.transform.GetComponent<Entity>();
-		if (entity == null)
+		if (entity != null)
 		{
-			return;
+			entity.health -= damage * power;
 		}
-		entity.health -= damage * power;
-		Destroy(gameObject);
 	}
 
 	void UpdateMesh()
