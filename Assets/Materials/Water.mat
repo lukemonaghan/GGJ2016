@@ -39,22 +39,22 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Glossiness
-        second: 0.8
-      data:
-        first:
-          name: _Metallic
-        second: 0.7
-      data:
-        first:
           name: _NormalScale
         second: 1.5
       data:
         first:
           name: _Speed
         second: 0.05
+      data:
+        first:
+          name: _Glossiness
+        second: 0.4
+      data:
+        first:
+          name: _Metallic
+        second: 0.3
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0.2205882, g: 0.5484786, b: 1, a: 0}
+        second: {r: 0.2205882, g: 0.5484786, b: 1, a: 0.453}

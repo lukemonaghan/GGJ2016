@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: b61f0d8d8244b4b28aa66b0c8cb46a8d, type: 3}
   converted3DLut: {fileID: 0}
-  basedOnTempTex: Assets/Standard Assets/Effects/ImageEffects/Textures/ContrastEnhanced3D16.png
+  basedOnTempTex: 
 --- !u!114 &11493830
 MonoBehaviour:
   m_ObjectHideFlags: 1

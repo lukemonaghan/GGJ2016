@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: 7e5afb8b1b4357442b8c93923f76f36e
+timeCreated: 1454163719
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: BD_Altar
+    100002: //RootNode
+    100004: BD_Altar_Shattered
+    100006: BD_Altar_Shattered1
+    100008: BD_Altar_Shattered10
+    100010: BD_Altar_Shattered11
+    100012: BD_Altar_Shattered12
+    100014: BD_Altar_Shattered13
+    100016: BD_Altar_Shattered2
+    100018: BD_Altar_Shattered3
+    100020: BD_Altar_Shattered4
+    100022: BD_Altar_Shattered5
+    100024: BD_Altar_Shattered6
+    100026: BD_Altar_Shattered7
+    100028: BD_Altar_Shattered8
+    100030: BD_Altar_Shattered9
+    100032: polySurface37
+    100034: polySurface38
+    100036: polySurface40
+    100038: polySurface42
+    100040: polySurface44
+    100042: polySurface46
+    100044: polySurface47
+    100046: polySurface50
+    100048: polySurface52
+    100050: polySurface53
+    100052: polySurface56
+    100054: polySurface57
+    100056: polySurface60
+    400000: BD_Altar
+    400002: BD_Altar_Shattered
+    400004: //RootNode
+    400006: BD_Altar_Shattered1
+    400008: BD_Altar_Shattered10
+    400010: BD_Altar_Shattered11
+    400012: BD_Altar_Shattered12
+    400014: BD_Altar_Shattered13
+    400016: BD_Altar_Shattered2
+    400018: BD_Altar_Shattered3
+    400020: BD_Altar_Shattered4
+    400022: BD_Altar_Shattered5
+    400024: BD_Altar_Shattered6
+    400026: BD_Altar_Shattered7
+    400028: BD_Altar_Shattered8
+    400030: BD_Altar_Shattered9
+    400032: polySurface37
+    400034: polySurface38
+    400036: polySurface40
+    400038: polySurface42
+    400040: polySurface44
+    400042: polySurface46
+    400044: polySurface47
+    400046: polySurface50
+    400048: polySurface52
+    400050: polySurface53
+    400052: polySurface56
+    400054: polySurface57
+    400056: polySurface60
+    2300000: BD_Altar_Shattered
+    2300002: BD_Altar_Shattered1
+    2300004: BD_Altar_Shattered10
+    2300006: BD_Altar_Shattered11
+    2300008: BD_Altar_Shattered12
+    2300010: BD_Altar_Shattered13
+    2300012: BD_Altar_Shattered2
+    2300014: BD_Altar_Shattered3
+    2300016: BD_Altar_Shattered4
+    2300018: BD_Altar_Shattered5
+    2300020: BD_Altar_Shattered6
+    2300022: BD_Altar_Shattered7
+    2300024: BD_Altar_Shattered8
+    2300026: BD_Altar_Shattered9
+    3300000: BD_Altar_Shattered
+    3300002: BD_Altar_Shattered1
+    3300004: BD_Altar_Shattered10
+    3300006: BD_Altar_Shattered11
+    3300008: BD_Altar_Shattered12
+    3300010: BD_Altar_Shattered13
+    3300012: BD_Altar_Shattered2
+    3300014: BD_Altar_Shattered3
+    3300016: BD_Altar_Shattered4
+    3300018: BD_Altar_Shattered5
+    3300020: BD_Altar_Shattered6
+    3300022: BD_Altar_Shattered7
+    3300024: BD_Altar_Shattered8
+    3300026: BD_Altar_Shattered9
+    4300000: BD_Altar_Shattered1
+    4300002: BD_Altar_Shattered2
+    4300004: BD_Altar_Shattered3
+    4300006: BD_Altar_Shattered4
+    4300008: BD_Altar_Shattered5
+    4300010: BD_Altar_Shattered6
+    4300012: BD_Altar_Shattered7
+    4300014: BD_Altar_Shattered8
+    4300016: BD_Altar_Shattered9
+    4300018: BD_Altar_Shattered10
+    4300020: BD_Altar_Shattered11
+    4300022: BD_Altar_Shattered12
+    4300024: BD_Altar_Shattered13
+    4300026: BD_Altar_Shattered
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -93,7 +93,7 @@ public class PortraitSpin : Entity
 
 		for (var i = 0; i < deathBits.Length; i++)
 		{
-			Instantiate(deathBits[i], transform.position, Quaternion.identity);
+			Instantiate(deathBits[i], transform.position, transform.rotation);
 		}
 	}
 }
