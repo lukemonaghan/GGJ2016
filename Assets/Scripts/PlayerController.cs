@@ -50,6 +50,7 @@ public class PlayerController : Entity
 		var pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 		body.velocity = pushDir * pushPower;
 	}
+
 	public override void OnDeath()
 	{
 		Destroy(gameObject);

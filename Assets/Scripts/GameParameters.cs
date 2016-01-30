@@ -47,7 +47,6 @@ public class GameParameters : ScriptableObject
 		}
 
 		public IngredientCount[] ingredients;
-		public SpellEffect effect;
 		public SpellType type;
 	}
 
@@ -55,6 +54,9 @@ public class GameParameters : ScriptableObject
 
 	public GameObject[] woodBits;
 
+	public SpellEffect Explosion;
+	public SpellEffect Projectile;
+	public GameObject Projectile_Hit;
 
 	[RuntimeInitializeOnLoadMethod()]
 	public static void CreateLevel()

@@ -19,38 +19,32 @@ MonoBehaviour:
   - ingredients:
     - type: 0
       minCount: 1
-    effect: {fileID: 11406760, guid: 4397ce871b1f1da49802ef789bc7d11a, type: 2}
     type: 1
   - ingredients:
     - type: 1
       minCount: 1
-    effect: {fileID: 11406760, guid: 732ccc34701f3214eb79afaa43dbff4b, type: 2}
     type: 1
   - ingredients:
     - type: 2
       minCount: 1
-    effect: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
     type: 1
   - ingredients:
     - type: 0
       minCount: 1
     - type: 1
       minCount: 1
-    effect: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
     type: 2
   - ingredients:
     - type: 1
       minCount: 1
     - type: 2
       minCount: 1
-    effect: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
     type: 2
   - ingredients:
     - type: 2
       minCount: 1
     - type: 0
       minCount: 1
-    effect: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
     type: 2
   - ingredients:
     - type: 0
@@ -59,7 +53,6 @@ MonoBehaviour:
       minCount: 1
     - type: 2
       minCount: 1
-    effect: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
     type: 2
   woodBits:
   - {fileID: 137570, guid: 34ef60ab9f6c1a14b9cd8d9e9c957ecb, type: 2}
@@ -68,3 +61,6 @@ MonoBehaviour:
   - {fileID: 154190, guid: aa19b9fd4c76ee64a80fd13337073c60, type: 2}
   - {fileID: 130068, guid: c575e80c9e444d44eb23d1bbb3de1d9c, type: 2}
   - {fileID: 113246, guid: 0d1223409299d4942856d6e2a0b492d8, type: 2}
+  Explosion: {fileID: 11406760, guid: de7e9c470499b7b478a631140a98ab6e, type: 2}
+  Projectile: {fileID: 11412768, guid: be03d028f4b2cb446af2e73375973da7, type: 2}
+  Projectile_Hit: {fileID: 109726, guid: 61292ba53c40d2c41b263e99e05dd932, type: 2}

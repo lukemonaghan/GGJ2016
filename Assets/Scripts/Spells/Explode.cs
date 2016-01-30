@@ -14,10 +14,7 @@ public class Explode : SpellEffect
 
 	Light childLight;
 	float currentTime = 0.0f;
-
-
-	public Renderer renderer { get { return _renderer ?? (_renderer = GetComponentInChildren<Renderer>()); } }
-	private Renderer _renderer;
+	private float timeOffset = 0.0f;
 
 	void Start()
 	{
@@ -27,7 +24,7 @@ public class Explode : SpellEffect
 
 	public void Update()
 	{
-		transform.localScale += Vector3.one * maxSize * Time.deltaTime;
+		transform.localScale += Vector3.one * maxSize * power * (1/loopduration) * Time.deltaTime;
 		UpdateMesh();
 	}
 
@@ -36,7 +33,12 @@ public class Explode : SpellEffect
 		var entity = col.transform.GetComponent<Entity>();
 		if (entity != null)
 		{
-			entity.health -= damage * power;
+			float amount = damage*power;
+            entity.health -= amount;
+			if ((entity is PlayerController) == false)
+			{
+				UIManager.Instance.inGameMenu.score += amount;
+			}
 		}
 	}
 
@@ -53,9 +55,9 @@ public class Explode : SpellEffect
 		if (currentTime >= loopduration)
 			Destroy(gameObject);
 
-		var r = Mathf.Sin((Time.time / loopduration) * (2 * Mathf.PI)) * 0.5f + 0.25f;
-		var g = Mathf.Sin((Time.time / loopduration + 0.33333333f) * 2 * Mathf.PI) * 0.5f + 0.25f;
-		var b = Mathf.Sin((Time.time / loopduration + 0.66666667f) * 2 * Mathf.PI) * 0.5f + 0.25f;
+		var r = Mathf.Sin(((currentTime + timeOffset) / loopduration) * (2 * Mathf.PI)) * 0.5f + 0.25f;
+		var g = Mathf.Sin(((currentTime + timeOffset) / loopduration + 0.33333333f) * 2 * Mathf.PI) * 0.5f + 0.25f;
+		var b = Mathf.Sin(((currentTime + timeOffset) / loopduration + 0.66666667f) * 2 * Mathf.PI) * 0.5f + 0.25f;
 		var correction = 1 / (r + g + b);
 		r *= correction;
 		g *= correction;
@@ -63,6 +65,6 @@ public class Explode : SpellEffect
 
 		renderer.material.SetVector("_ChannelFactor", new Vector4(r, g, b, 0));
 		renderer.material.SetFloat("_ClipRange", loopduration - currentTime);
-		renderer.material.SetColor("_ExplosionColor", childLight.color);
+		renderer.material.SetColor("_Color", childLight.color);
 	}
 }

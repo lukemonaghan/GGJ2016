@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+
 public class CameraController : MonoBehaviour
 {
 	public Transform target;
@@ -11,6 +12,7 @@ public class CameraController : MonoBehaviour
 		{
 			offset = transform.position - target.transform.position;
 		}
+		transform.position = target.transform.position + offset;
 	}
 
 	public void LateUpdate()

@@ -42,7 +42,7 @@ public class BookcaseDetect : Entity
 
 		if (canFall)
 		{
-			if (transform.eulerAngles.x > 89 && transform.eulerAngles.x < 91)
+			if (transform.eulerAngles.x > 85 && transform.eulerAngles.x < 95 || transform.eulerAngles.x > 265 && transform.eulerAngles.x < 275 || rb.angularVelocity.magnitude < 0.1f)
 			{
 				OnDeath();
 			}

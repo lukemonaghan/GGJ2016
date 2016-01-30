@@ -7,7 +7,21 @@ public class UIInGame : MonoBehaviour
 {
 	public List<Image> uiIngredientBar = new List<Image>();
 	public Dictionary<GameParameters.IngredientTypes,int> currentTypes = new Dictionary<GameParameters.IngredientTypes, int>();
-	 
+
+	private float _score = 0.0f;
+
+	public float score
+	{
+		set
+		{
+			_score = value;
+			scoreText.text = ((int) _score).ToString();
+		}
+		get { return _score; }
+	}
+
+	public Text scoreText;
+
 	public void AddIngredient(Sprite spriteImage, GameParameters.IngredientTypes type)
 	{
 		// Object Pooling
@@ -70,7 +84,7 @@ public class UIInGame : MonoBehaviour
 		currentTypes.Clear();
 	}
 
-	public GameParameters.SpellType ActivateSpell(out GameObject newObject)
+	public GameParameters.SpellType ActivateSpell(out GameObject newObject, Color color)
 	{
 		newObject = null;
 		// Get a list of all avaliable spells
@@ -114,11 +128,24 @@ public class UIInGame : MonoBehaviour
 		// Grab our player
 		var controller = FindObjectOfType<PlayerController>();
 
+		SpellEffect effectPrefab = null;
+		// Do the correct animation
+		switch (CurrentSpell.type)
+		{
+			case GameParameters.SpellType.Explode:
+				effectPrefab = GameParameters.Instance.Explosion;
+                break;
+			case GameParameters.SpellType.Projectile:
+				effectPrefab = GameParameters.Instance.Projectile;
+				break;
+		}
+
 		// Create the spell effect
-		newObject = Instantiate(CurrentSpell.effect.gameObject);
+		newObject = Instantiate(effectPrefab.gameObject);
 		newObject.transform.position = controller.transform.position + controller.transform.forward;
 		newObject.transform.rotation = controller.transform.rotation;
 		var effect = newObject.GetComponent<SpellEffect>();
+		effect.color = color;
 
 		// Add its power
 		foreach (var s in CurrentSpell.ingredients)

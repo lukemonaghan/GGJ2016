@@ -8,7 +8,7 @@
         _ChannelFactor ("ChannelFactor (r,g,b)", Vector) = (1,0,0)
         _Range ("Range (min,max)", Vector) = (0,0.5,0)
         _ClipRange ("ClipRange [0,1]", float) = 0.8
-		_ExplosionColor("Color", Color) = (1, 1, 1, 1)
+		_Color("Color", Color) = (1, 1, 1, 1)
     }
  
     SubShader 
@@ -27,7 +27,7 @@
         float3 _ChannelFactor;
         float2 _Range;
         float _ClipRange;
-		uniform float4 _ExplosionColor;
+		uniform float4 _Color;
  
         struct Input 
         {
@@ -48,7 +48,7 @@
             float3 dcolor = tex2D(_DispTex, IN.uv_DispTex);
             float d = (dcolor.r*_ChannelFactor.r + dcolor.g*_ChannelFactor.g + dcolor.b*_ChannelFactor.b) * (_Range.y-_Range.x) + _Range.x;
             clip (_ClipRange-d);
-            half4 c = tex2D(_RampTex, float2(d,0.5)) * _ExplosionColor;
+            half4 c = tex2D(_RampTex, float2(d,0.5)) * _Color;
             o.Albedo = c.rgb;
             o.Emission = c.rgb*c.a;
         }
