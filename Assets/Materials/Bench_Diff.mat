@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BD_FrameMat
+  m_Name: Bench_Diff
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _NORMALMAP
-  m_LightmapFlags: 1
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: bb2a5043137461d4aa513b4410d26642, type: 3}
+          m_Texture: {fileID: 2800000, guid: 506c6fe95a6c8bc47a4af3095b3b6acd, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 094b50e5a7b6e684998aa40c6825b8de, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -54,7 +54,7 @@ Material:
         first:
           name: _EmissionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 34dd5e51798c52c49bccc3147c4443fb, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -94,11 +94,11 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.38
+        second: 0.5
       data:
         first:
           name: _Metallic
-        second: 0.13
+        second: 0
       data:
         first:
           name: _Parallax
@@ -110,7 +110,7 @@ Material:
       data:
         first:
           name: _BumpScale
-        second: 0.25
+        second: 1
       data:
         first:
           name: _OcclusionStrength
@@ -131,7 +131,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0.44117647, g: 0, b: 0, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _Color

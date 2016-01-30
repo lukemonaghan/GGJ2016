@@ -11,9 +11,27 @@ public class UIInGame : MonoBehaviour
 	private float _score = 0.0f;
 
 	public Text scoreText;
+	public Text healthText;
 
 	private Vector2 initialPosition;
 	private Vector2 initialSize;
+
+	public void SetHealth(int value)
+	{
+		healthText.text = "Health:" + value;
+	}
+
+	public void DamagePopup(Transform scoreObject, int value)
+	{
+		var tempText = Instantiate(healthText.gameObject);
+		tempText.transform.SetParent(healthText.transform.parent);
+		var text = tempText.GetComponent<Text>();
+		text.text = value.ToString();
+
+		var popup = tempText.AddComponent<UIWorldPopup>();
+		popup.EnableAtPosition(scoreObject.position);
+		popup.MoveTowards(healthText.rectTransform.position, 5, () => Destroy(tempText));
+	}
 
 	void Start()
 	{
@@ -24,7 +42,7 @@ public class UIInGame : MonoBehaviour
 	public void AddScore(Transform scoreObject, float amount)
 	{
 		_score += amount;
-		scoreText.text = ((int)_score).ToString();
+		scoreText.text = "Score:" + ((int)_score);
 
 		var tempText = Instantiate(scoreText.gameObject);
 		tempText.transform.SetParent(scoreText.transform.parent);
@@ -32,7 +50,6 @@ public class UIInGame : MonoBehaviour
 		text.text = ((int)amount).ToString();
 
 		var popup = tempText.AddComponent<UIWorldPopup>();
-
 		popup.EnableAtPosition(scoreObject.position);
 		popup.MoveTowards(scoreText.rectTransform.position, 5, () => Destroy(tempText));
 	}

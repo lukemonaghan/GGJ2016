@@ -27,6 +27,9 @@ public class PortraitSpin : Entity
 	public Collider collider { get { return _collider ?? (_collider = GetComponentInChildren<Collider>()); } }
 	private Collider _collider;
 
+	public Rigidbody rigidBody { get { return _rigidBody ?? (_rigidBody = GetComponentInChildren<Rigidbody>()); } }
+	private Rigidbody _rigidBody;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -60,26 +63,27 @@ public class PortraitSpin : Entity
 		childTransform.rotation = Quaternion.Slerp(childTransform.rotation, Quaternion.LookRotation(target.position - childTransform.position), turnSpeed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, (transform.position - target.position).normalized * stopDistance + target.position, Time.deltaTime * moveSpeed);
 
-		if (transform.position.y > 2)
+		if (rigidBody.position.y > 2)
 		{
-			
+			rigidBody.position = new Vector3(rigidBody.position.x, 2, rigidBody.position.z);
 		}
 
+		rigidBody.velocity = Vector3.zero;
+		rigidBody.angularVelocity = Vector3.zero;
 	}
 
 	IEnumerator Shoot()
 	{
 		yield return new WaitForSeconds(shootCooldown);
-		var spellObject = Instantiate(GameParameters.Instance.Projectile, childTransform.position + childTransform.forward, childTransform.rotation) as GameObject;
-		if (spellObject != null && collider != null)
-		{
-			Physics.IgnoreCollision(collider, spellObject.GetComponent<Collider>());
-		}
-		if (spellObject != null)
-		{
-			var projectile = spellObject.GetComponent<Projectile>();
-			projectile.speed *= shootCooldown;
-		}
+		var spellObject = Instantiate(GameParameters.Instance.Projectile);
+		spellObject.transform.position = childTransform.position + childTransform.forward*1.5f;
+		spellObject.transform.rotation = childTransform.rotation;
+
+		Physics.IgnoreCollision(collider, spellObject.GetComponentInChildren<Collider>());
+
+		var projectile = spellObject.GetComponent<Projectile>();
+		projectile.speed *= shootCooldown;
+
 		shootRoutine = null;
 	}
 

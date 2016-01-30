@@ -41,8 +41,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165752}
-  m_LocalRotation: {x: 0, y: -0.70710665, z: 0, w: -0.7071069}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071083, z: 0, w: 0.7071053}
+  m_LocalPosition: {x: -37, y: 0, z: 20.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 432868}
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 424596}
@@ -143,9 +143,9 @@ MonoBehaviour:
   turnSpeed: 3
   spinSpeed: 360
   followDistance: 10
-  stopDistance: 4
-  shootDistance: 5
-  shootCooldown: 2
+  stopDistance: 6
+  shootDistance: 8
+  shootCooldown: 1
   childTransform: {fileID: 432868}
 --- !u!1001 &100100000
 Prefab:
@@ -180,7 +180,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: stopDistance
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_IsKinematic
@@ -214,6 +214,10 @@ Prefab:
       propertyPath: deathBits.Array.data[5]
       value: 
       objectReference: {fileID: 154190, guid: aa19b9fd4c76ee64a80fd13337073c60, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shootDistance
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165752}

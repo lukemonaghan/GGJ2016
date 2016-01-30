@@ -14,7 +14,6 @@ public class BookcaseDetect : Entity
 
 	private bool hasLockedOn = false;
 
-	// Use this for initialization
 	void Start ()
 	{
         target = GameObject.FindWithTag("Player").transform;
@@ -22,35 +21,40 @@ public class BookcaseDetect : Entity
         rb = GetComponentInChildren<Rigidbody>();
 	}
 	
-	// Update is called once per frame
 	void Update()
 	{
 		if (target == null)
 		{
+			//Debug.Log("no targert");
 			return;
 		}
 
 		if (Vector3.Distance(target.transform.position, transform.position) < distance)
 		{
+			//Debug.Log("in range");
 			hasLockedOn = true;
 		}
 
 		if (hasLockedOn == false)
 		{
+			//Debug.Log("hasLockedOn false");
 			return;
 		}
 
 		if (canFall)
 		{
-			if ((transform.eulerAngles.x > 85 && transform.eulerAngles.x < 95) || (transform.eulerAngles.x > 265 && transform.eulerAngles.x < 275) || (rb.IsSleeping()))
+			if ((transform.eulerAngles.x > 85 && transform.eulerAngles.x < 95) || (transform.eulerAngles.x > 265 && transform.eulerAngles.x < 275))
 			{
 				OnDeath();
 			}
-			return;
+			//Debug.Log("Fall");
 		}
-
-		rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.LookRotation(target.position - rb.position), turnSpeed * Time.deltaTime);
-		rb.position += transform.forward * moveSpeed * Time.deltaTime;
+		else
+		{
+			rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.LookRotation(target.position - rb.position), turnSpeed * Time.deltaTime);
+			rb.position += transform.forward * moveSpeed * Time.deltaTime;
+			//Debug.Log("Move");
+		}
 	}
 
     void OnTriggerEnter(Collider other)
@@ -58,7 +62,7 @@ public class BookcaseDetect : Entity
         if (other.gameObject.tag == "Player")
         {
             canFall = true;
-            rb.AddRelativeForce(Vector3.forward * 3500.0f);
+            rb.AddForce(transform.forward * 3500.0f);
         }
     }
 
@@ -67,9 +71,10 @@ public class BookcaseDetect : Entity
 		if (other.gameObject.tag == "Player")
 		{
 			other.gameObject.GetComponent<PlayerController>().health -= damage;
+			UIManager.Instance.inGameMenu.DamagePopup(transform, (int)-damage);
 			OnDeath();
 		}
-    }
+	}
 
 	public override void OnDeath()
 	{

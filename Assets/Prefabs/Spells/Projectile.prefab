@@ -8,9 +8,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 473834}
-  - 135: {fileID: 13526736}
   - 114: {fileID: 11412768}
   - 198: {fileID: 19881236}
+  - 135: {fileID: 13526736}
   - 199: {fileID: 19977904}
   - 54: {fileID: 5471526}
   - 114: {fileID: 11418142}

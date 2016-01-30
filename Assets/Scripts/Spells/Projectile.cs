@@ -26,6 +26,10 @@ public class Projectile : SpellEffect
 			{
 				UIManager.Instance.inGameMenu.AddScore(transform,amount);
 			}
+			else
+			{
+				UIManager.Instance.inGameMenu.DamagePopup(transform, (int)-amount);
+			}
 		}
 		var hitEffect = Instantiate(GameParameters.Instance.Projectile_Hit, col.contacts[0].point + (col.contacts[0].normal * 0.1f), Quaternion.LookRotation(col.contacts[0].normal)) as GameObject;
 		foreach (var ps in hitEffect.GetComponentsInChildren<ParticleSystem>())

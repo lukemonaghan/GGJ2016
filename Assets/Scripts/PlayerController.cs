@@ -10,10 +10,28 @@ public class PlayerController : Entity
 
 	public float speed = 10;
 	public float pushPower = 2.0f;
-	
-	// Update is called once per frame
+
+	private Transform cameraForward;
+
+	void Start()
+	{
+		cameraForward = GameObject.FindGameObjectWithTag("CameraForward").transform;
+		OnHealthChanged = f => UIManager.Instance.inGameMenu.SetHealth(Mathf.CeilToInt(f));
+		var controller = Camera.main.GetComponent<CameraController>();
+		OnHealthChanged += f => controller.Shake(Vector2.one * 2, 0.1f);
+	}
+
 	void Update ()
 	{
+
+		var A_1 = Input.GetAxisRaw("A_1");
+
+		var sprint = 1;
+		if (Mathf.Abs(A_1) > 0.01f)
+		{
+			sprint *= 2;
+		}
+
 		// Looking
 		var RYAxis_1 = Input.GetAxis("R_YAxis_1");
 		var RXAxis_1 = Input.GetAxis("R_XAxis_1");
@@ -21,7 +39,7 @@ public class PlayerController : Entity
 		// we use the deadzone of 0.01f to stop it snapping when no axis is in. Keeps old axis.
 		if (Math.Abs(RYAxis_1) > 0.01f && Math.Abs(RXAxis_1) > 0.01f)
 		{
-			var angle = Mathf.Atan2(RXAxis_1, -RYAxis_1)*Mathf.Rad2Deg;
+			var angle = Mathf.Atan2(RXAxis_1, -RYAxis_1) * Mathf.Rad2Deg + cameraForward.parent.eulerAngles.y;
 			transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
 		}
 
@@ -30,8 +48,8 @@ public class PlayerController : Entity
 		var LXAxis_1 = Input.GetAxis("L_XAxis_1");
 
 		var direction = Vector3.zero;
-		direction += Vector3.forward * speed * -LYAxis_1;
-		direction += Vector3.right * speed * LXAxis_1;
+		direction += cameraForward.forward * sprint * speed * -LYAxis_1;
+		direction += cameraForward.right * sprint * speed * LXAxis_1;
 
 		animator.SetFloat("Velocity",direction.normalized.magnitude);
 		// Use simplemove on the charController

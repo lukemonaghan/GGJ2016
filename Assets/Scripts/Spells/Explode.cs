@@ -37,7 +37,11 @@ public class Explode : SpellEffect
 			if ((entity is PlayerController) == false)
 			{
 				UIManager.Instance.inGameMenu.AddScore(transform,amount);
-			}
+            }
+			else
+			{
+				UIManager.Instance.inGameMenu.DamagePopup(transform,(int)-amount);
+            }
 		}
 	}
 
