@@ -52,8 +52,6 @@ public class GameParameters : ScriptableObject
 
 	public List<Spell> Spells = new List<Spell>();
 
-	public GameObject[] woodBits;
-
 	public SpellEffect Explosion;
 	public SpellEffect Projectile;
 	public GameObject Projectile_Hit;

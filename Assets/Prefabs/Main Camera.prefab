@@ -32,8 +32,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192518}
-  m_LocalRotation: {x: 0.2588187, y: 0, z: 0, w: 0.96592593}
-  m_LocalPosition: {x: 0, y: 14, z: -22}
+  m_LocalRotation: {x: 0.46174866, y: 0, z: 0, w: 0.8870108}
+  m_LocalPosition: {x: 0, y: 20, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -118,8 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualizeFocus: 0
   focalLength: 10
-  focalSize: 0.5
-  aperture: 0.6
+  focalSize: 0.7
+  aperture: 0.5
   focalTransform: {fileID: 0}
   maxBlurSize: 2
   highResolution: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   hdr: 0
   sepBlurSpread: 2
   quality: 1
-  bloomIntensity: 2
+  bloomIntensity: 1.5
   bloomThreshold: 0.3
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 2
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 14, z: -16}
+  offset: {x: 0, y: 20, z: -10}
   speed: 3
 --- !u!124 &12487608
 Behaviour:

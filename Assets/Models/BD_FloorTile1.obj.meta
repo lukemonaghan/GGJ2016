@@ -14,7 +14,7 @@ ModelImporter:
     4300000: FloorTile1_LP
     6400000: FloorTile1_LP
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

@@ -9,5 +9,7 @@ public abstract class Entity : MonoBehaviour
 		set { _health = value; if (_health <= 0) { OnDeath(); } }
 	}
 
+	public GameObject[] deathBits;
+
 	public abstract void OnDeath();
 }

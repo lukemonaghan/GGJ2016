@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 165752}
   m_LocalRotation: {x: 0, y: -0.70710665, z: 0, w: -0.7071069}
-  m_LocalPosition: {x: -6, y: 0, z: -18.5}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 432868}
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 107374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1.5, y: 2, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 424596}
   m_RootOrder: 0
@@ -70,7 +70,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: f90aea41f6ced1a4ea8762f4f10d333d, type: 2}
+  - {fileID: 2100000, guid: c29f9fb6cd5085d4f97e50c68dbeafe9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -92,7 +92,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107374}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: b87b275c05c919b47aefe7bce54dc674, type: 3}
 --- !u!54 &5466590
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -118,7 +118,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11420854
 MonoBehaviour:
@@ -132,6 +132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 20
+  deathBits:
+  - {fileID: 156168, guid: e23343967c499d5458f7bebb256fb65d, type: 2}
+  - {fileID: 172336, guid: 0ea9e321e19702d4685e28d26092b352, type: 2}
+  - {fileID: 199716, guid: 9759d1799a54f344cb4c46cd2df55d03, type: 2}
+  - {fileID: 185838, guid: c8a1464d0419a3b43990cae5c2e303df, type: 2}
+  - {fileID: 129310, guid: 5b66c8981a850ec4ebf88f17488f502f, type: 2}
+  - {fileID: 173794, guid: 2d80bd63df4299745bc402a437492fad, type: 2}
   moveSpeed: 3
   turnSpeed: 3
   spinSpeed: 360
@@ -147,6 +154,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Mass
       value: 10
@@ -171,6 +182,38 @@ Prefab:
       propertyPath: stopDistance
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[0]
+      value: 
+      objectReference: {fileID: 113246, guid: 0d1223409299d4942856d6e2a0b492d8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[1]
+      value: 
+      objectReference: {fileID: 158636, guid: 37426e4654d26a044960e9a89d4899c3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[2]
+      value: 
+      objectReference: {fileID: 115858, guid: 4e998ff6a2c4c4e4489251a1f8c40c33, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[3]
+      value: 
+      objectReference: {fileID: 137570, guid: 34ef60ab9f6c1a14b9cd8d9e9c957ecb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[4]
+      value: 
+      objectReference: {fileID: 130068, guid: c575e80c9e444d44eb23d1bbb3de1d9c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: deathBits.Array.data[5]
+      value: 
+      objectReference: {fileID: 154190, guid: aa19b9fd4c76ee64a80fd13337073c60, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 165752}

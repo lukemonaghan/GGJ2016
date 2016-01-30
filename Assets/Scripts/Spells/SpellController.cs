@@ -24,11 +24,25 @@ public class SpellController : MonoBehaviour
 		var l = Mathf.Abs(Input.GetAxisRaw("TriggersL_1"));
 		var r = Mathf.Abs(Input.GetAxisRaw("TriggersR_1"));
 
-        if (l > 0.01f || r > 0.01f)
+		// Get the type from input
+		var type = GameParameters.SpellType.NONE;
+		if (l > 0.01f)
+		{
+			type = GameParameters.SpellType.Explode;
+        }
+		else if (r > 0.01f)
+		{
+			type = GameParameters.SpellType.Projectile;
+		}
+
+		// Did we press something?
+		if (type != GameParameters.SpellType.NONE)
         {
 			// Create the Spell
 	        GameObject spellObject = null;
-			var type = UIManager.Instance.inGameMenu.ActivateSpell(out spellObject,EmissionColor);
+			UIManager.Instance.inGameMenu.ActivateSpell(out spellObject,EmissionColor, type);
+
+			// Did we have a good mix?
 			if (spellObject != null)
 			{
 				// Reset the color

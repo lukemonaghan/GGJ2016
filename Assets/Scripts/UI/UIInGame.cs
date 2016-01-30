@@ -10,24 +10,41 @@ public class UIInGame : MonoBehaviour
 
 	private float _score = 0.0f;
 
-	public float score
-	{
-		set
-		{
-			_score = value;
-			scoreText.text = ((int) _score).ToString();
-		}
-		get { return _score; }
-	}
-
 	public Text scoreText;
 
-	public void AddIngredient(Sprite spriteImage, GameParameters.IngredientTypes type)
+	private Vector2 initialPosition;
+	private Vector2 initialSize;
+
+	void Start()
+	{
+		initialPosition = uiIngredientBar[0].rectTransform.position;
+		initialSize = uiIngredientBar[0].rectTransform.sizeDelta;
+	}
+
+	public void AddScore(Transform scoreObject, float amount)
+	{
+		_score += amount;
+		scoreText.text = ((int)_score).ToString();
+
+		var tempText = Instantiate(scoreText.gameObject);
+		tempText.transform.SetParent(scoreText.transform.parent);
+		var text = tempText.GetComponent<Text>();
+		text.text = ((int)amount).ToString();
+
+		var popup = tempText.AddComponent<UIWorldPopup>();
+
+		popup.EnableAtPosition(scoreObject.position);
+		popup.MoveTowards(scoreText.rectTransform.position, 5, () => Destroy(tempText));
+	}
+
+	public void AddIngredient(Transform ingredientPosition, Sprite spriteImage, GameParameters.IngredientTypes type)
 	{
 		// Object Pooling
 		GameObject newIngredient = null;
-		foreach (var ing in uiIngredientBar)
+		int index = 0;
+        for (; index < uiIngredientBar.Count; index++)
 		{
+			var ing = uiIngredientBar[index];
 			// Have we found the next disabled element
 			if (ing.gameObject.activeSelf == false)
 			{
@@ -50,10 +67,6 @@ public class UIInGame : MonoBehaviour
 			var trans = newIngredient.transform as RectTransform;
 			trans.SetParent(uiIngredientBar[0].transform.parent);
 
-			// Move it
-			var lastTrans = uiIngredientBar[uiIngredientBar.Count - 1].transform as RectTransform;
-			trans.anchoredPosition = lastTrans.anchoredPosition + new Vector2(lastTrans.sizeDelta.x * 0.75f,0);
-
 			// Add it
 			uiIngredientBar.Add(newIngredient.GetComponent<Image>());
         }
@@ -67,6 +80,13 @@ public class UIInGame : MonoBehaviour
 		{
 			currentTypes.Add(type, 1);
 		}
+
+		// Popup at the location of the ingredient
+		var popup = newIngredient.GetComponent<UIWorldPopup>();
+		popup.EnableAtPosition(ingredientPosition.position);
+
+		// Move towards the bar
+		popup.MoveTowards(initialPosition + new Vector2(initialSize.x * 0.75f * index, 0));
 
 		// Set out sprite
 		newIngredient.GetComponent<Image>().sprite = spriteImage;
@@ -84,7 +104,7 @@ public class UIInGame : MonoBehaviour
 		currentTypes.Clear();
 	}
 
-	public GameParameters.SpellType ActivateSpell(out GameObject newObject, Color color)
+	public GameParameters.SpellType ActivateSpell(out GameObject newObject, Color color, GameParameters.SpellType type)
 	{
 		newObject = null;
 		// Get a list of all avaliable spells
@@ -130,7 +150,7 @@ public class UIInGame : MonoBehaviour
 
 		SpellEffect effectPrefab = null;
 		// Do the correct animation
-		switch (CurrentSpell.type)
+		switch (type)
 		{
 			case GameParameters.SpellType.Explode:
 				effectPrefab = GameParameters.Instance.Explosion;
@@ -156,7 +176,7 @@ public class UIInGame : MonoBehaviour
 		// Clear our stack
 		FixIngredients();
 
-		return CurrentSpell.type;
+		return type;
 	}
 
 	// Basic sort function

@@ -59,7 +59,13 @@ public class PortraitSpin : Entity
 
 		childTransform.rotation = Quaternion.Slerp(childTransform.rotation, Quaternion.LookRotation(target.position - childTransform.position), turnSpeed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, (transform.position - target.position).normalized * stopDistance + target.position, Time.deltaTime * moveSpeed);
-    }
+
+		if (transform.position.y > 2)
+		{
+			
+		}
+
+	}
 
 	IEnumerator Shoot()
 	{
@@ -81,9 +87,9 @@ public class PortraitSpin : Entity
 	{
 		Destroy(gameObject);
 
-		for (var i = 0; i < Random.Range(5, 10); i++)
+		for (var i = 0; i < deathBits.Length; i++)
 		{
-			Instantiate(GameParameters.Instance.woodBits[Random.Range(0, GameParameters.Instance.woodBits.Length)], transform.position, Quaternion.identity);
+			Instantiate(deathBits[i], transform.position, Quaternion.identity);
 		}
 	}
 }

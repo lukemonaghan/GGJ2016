@@ -14,12 +14,11 @@ public class Explode : SpellEffect
 
 	Light childLight;
 	float currentTime = 0.0f;
-	private float timeOffset = 0.0f;
 
 	void Start()
 	{
 		childLight = GetComponentInChildren<Light>();
-		loopduration += Random.value;
+		Camera.main.GetComponent<CameraController>().Shake(Vector2.one * 0.05f * power, loopduration * 0.75f);
 	}
 
 	public void Update()
@@ -33,11 +32,11 @@ public class Explode : SpellEffect
 		var entity = col.transform.GetComponent<Entity>();
 		if (entity != null)
 		{
-			float amount = damage*power;
+			var amount = damage*power;
             entity.health -= amount;
 			if ((entity is PlayerController) == false)
 			{
-				UIManager.Instance.inGameMenu.score += amount;
+				UIManager.Instance.inGameMenu.AddScore(transform,amount);
 			}
 		}
 	}
@@ -53,11 +52,13 @@ public class Explode : SpellEffect
 
 		currentTime += Time.deltaTime;
 		if (currentTime >= loopduration)
+		{
 			Destroy(gameObject);
+		}
 
-		var r = Mathf.Sin(((currentTime + timeOffset) / loopduration) * (2 * Mathf.PI)) * 0.5f + 0.25f;
-		var g = Mathf.Sin(((currentTime + timeOffset) / loopduration + 0.33333333f) * 2 * Mathf.PI) * 0.5f + 0.25f;
-		var b = Mathf.Sin(((currentTime + timeOffset) / loopduration + 0.66666667f) * 2 * Mathf.PI) * 0.5f + 0.25f;
+		var r = Mathf.Sin((currentTime / loopduration			    ) * (2 * Mathf.PI)) * 0.5f + 0.25f;
+		var g = Mathf.Sin((currentTime / loopduration + 0.33333333f ) * (2 * Mathf.PI)) * 0.5f + 0.25f;
+		var b = Mathf.Sin((currentTime / loopduration + 0.66666667f ) * (2 * Mathf.PI)) * 0.5f + 0.25f;
 		var correction = 1 / (r + g + b);
 		r *= correction;
 		g *= correction;

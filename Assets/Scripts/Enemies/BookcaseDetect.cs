@@ -42,7 +42,7 @@ public class BookcaseDetect : Entity
 
 		if (canFall)
 		{
-			if (transform.eulerAngles.x > 85 && transform.eulerAngles.x < 95 || transform.eulerAngles.x > 265 && transform.eulerAngles.x < 275 || rb.angularVelocity.magnitude < 0.1f)
+			if ((transform.eulerAngles.x > 85 && transform.eulerAngles.x < 95) || (transform.eulerAngles.x > 265 && transform.eulerAngles.x < 275) || (rb.IsSleeping()))
 			{
 				OnDeath();
 			}
@@ -75,9 +75,9 @@ public class BookcaseDetect : Entity
 	{
 		Destroy(gameObject);
 
-		for (var i = 0; i < Random.Range(5, 10); i++)
+		for (var i = 0; i < deathBits.Length; i++)
 		{
-			Instantiate(GameParameters.Instance.woodBits[Random.Range(0, GameParameters.Instance.woodBits.Length)], transform.position, Quaternion.identity);
+			Instantiate(deathBits[i], transform.position, Quaternion.identity);
 		}
 	}
 }

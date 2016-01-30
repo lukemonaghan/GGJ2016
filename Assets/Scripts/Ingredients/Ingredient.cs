@@ -22,7 +22,9 @@ public class Ingredient : MonoBehaviour
 
 			spellController.AddColor(renderer.material.color);
             
-			UIManager.Instance.inGameMenu.AddIngredient(sprite, type);
+			UIManager.Instance.inGameMenu.AddIngredient(transform, sprite, type);
+
+			Camera.main.GetComponent<CameraController>().Shake(Vector2.one * 0.1f, 0.05f);
 
 			// Animation Hook goes here
 			Destroy(gameObject);
