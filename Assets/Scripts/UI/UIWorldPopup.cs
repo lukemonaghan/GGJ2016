@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class UIWorldPopup : MonoBehaviour
 {
-
 	public void EnableAtPosition(Vector3 position)
 	{
 		gameObject.SetActive(true);

@@ -5,12 +5,16 @@ public class SpellController : MonoBehaviour
 	public Animator animator { get { return _animator ?? (_animator = GetComponentInChildren<Animator>()); } }
 	private Animator _animator;
 
-	public Renderer renderer { get { return _renderer ?? (_renderer = GetComponentInChildren<Renderer>()); } }
-	private Renderer _renderer;
+	public Renderer[] renderers { get { return _renderers ?? (_renderers = GetComponentsInChildren<Renderer>()); } }
+	private Renderer[] _renderers;
 	public ParticleSystem[] particleSystems { get { return _particleSystems ?? (_particleSystems = GetComponentsInChildren<ParticleSystem>()); } }
 	private ParticleSystem[] _particleSystems;
+	public Light[] lights { get { return _lights ?? (_lights = GetComponentsInChildren<Light>()); } }
+	private Light[] _lights;
 
 	Color EmissionColor = Color.black;
+
+	public GameObject lineObject;
 
 	void Start()
 	{
@@ -20,26 +24,38 @@ public class SpellController : MonoBehaviour
 
 	void Update()
 	{
+		lineObject.SetActive(false);
+	}
+
+	void LateUpdate()
+	{
 		// Either Trigger
 		var l = Mathf.Abs(Input.GetAxisRaw("TriggersL_1"));
 		var r = Mathf.Abs(Input.GetAxisRaw("TriggersR_1"));
 
 		// Get the type from input
 		var type = GameParameters.SpellType.NONE;
-		if (l > 0.01f)
+		if (l > 0.1f)
 		{
-			type = GameParameters.SpellType.Explode;
-        }
-		else if (r > 0.01f)
+            if (l > 0.75f)
+			{
+				type = GameParameters.SpellType.Explode;
+			}
+		}
+		if (r > 0.1f)
 		{
-			type = GameParameters.SpellType.Projectile;
+			lineObject.SetActive(true);
+			if (r > 0.75f)
+			{
+				type = GameParameters.SpellType.Projectile;
+			}
 		}
 
 		// Did we press something?
 		if (type != GameParameters.SpellType.NONE)
         {
 			// Create the Spell
-	        GameObject spellObject = null;
+	        GameObject spellObject;
 			UIManager.Instance.inGameMenu.ActivateSpell(out spellObject,EmissionColor, type);
 
 			// Did we have a good mix?
@@ -85,6 +101,13 @@ public class SpellController : MonoBehaviour
 		{
 			p.startColor = EmissionColor;
 		}
-		renderer.material.SetColor("_EmissionColor", EmissionColor);
+		foreach (var l in lights)
+		{
+			l.color = EmissionColor;
+		}
+		foreach (var r in renderers)
+		{
+			r.material.SetColor("_EmissionColor", EmissionColor);
+		}
 	}
 }

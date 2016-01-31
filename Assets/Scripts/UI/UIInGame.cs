@@ -8,6 +8,8 @@ public class UIInGame : MonoBehaviour
 	public List<Image> uiIngredientBar = new List<Image>();
 	public Dictionary<GameParameters.IngredientTypes,int> currentTypes = new Dictionary<GameParameters.IngredientTypes, int>();
 
+	public List<GameObject> nonCacheableObjects = new List<GameObject>(); 
+
 	private float _score = 0.0f;
 
 	public Text scoreText;
@@ -15,6 +17,16 @@ public class UIInGame : MonoBehaviour
 
 	private Vector2 initialPosition;
 	private Vector2 initialSize;
+
+	void OnEnable()
+	{
+		foreach (var v in nonCacheableObjects)
+		{
+			if (v != null)
+				DestroyImmediate(v);
+		}
+		nonCacheableObjects.Clear();
+    }
 
 	public void SetHealth(int value)
 	{
@@ -31,7 +43,8 @@ public class UIInGame : MonoBehaviour
 		var popup = tempText.AddComponent<UIWorldPopup>();
 		popup.EnableAtPosition(scoreObject.position);
 		popup.MoveTowards(healthText.rectTransform.position, 5, () => Destroy(tempText));
-	}
+		nonCacheableObjects.Add(tempText);
+    }
 
 	void Start()
 	{
@@ -52,6 +65,7 @@ public class UIInGame : MonoBehaviour
 		var popup = tempText.AddComponent<UIWorldPopup>();
 		popup.EnableAtPosition(scoreObject.position);
 		popup.MoveTowards(scoreText.rectTransform.position, 5, () => Destroy(tempText));
+		nonCacheableObjects.Add(tempText);
 	}
 
 	public void AddIngredient(Transform ingredientPosition, Sprite spriteImage, GameParameters.IngredientTypes type)
@@ -121,9 +135,10 @@ public class UIInGame : MonoBehaviour
 		currentTypes.Clear();
 	}
 
-	public GameParameters.SpellType ActivateSpell(out GameObject newObject, Color color, GameParameters.SpellType type)
+	public GameParameters.Spell GetCurrentSpell(GameParameters.SpellType type,out float power)
 	{
-		newObject = null;
+		power = 0.0f;
+
 		// Get a list of all avaliable spells
 		var CurrentSpells = new List<GameParameters.Spell>();
 		foreach (var spell in GameParameters.Instance.Spells)
@@ -153,14 +168,32 @@ public class UIInGame : MonoBehaviour
 		// Did we have any applicable spells?
 		if (CurrentSpells.Count == 0)
 		{
-			return GameParameters.SpellType.NONE;
+			return null;
 		}
 
 		// Sort them.
 		CurrentSpells.Sort(SortSpells);
 
+		// Add its power
+		foreach (var s in CurrentSpells[0].ingredients)
+		{
+			power += currentTypes[s.type];
+		}
+
 		// Snag the best spell
-		var CurrentSpell = CurrentSpells[0];
+		return CurrentSpells[0];
+	}
+
+	public GameParameters.SpellType ActivateSpell(out GameObject newObject, Color color, GameParameters.SpellType type)
+	{
+		newObject = null;
+		float power;
+		var CurrentSpell = GetCurrentSpell(type,out power);
+
+		if (CurrentSpell == null)
+		{
+			return GameParameters.SpellType.NONE;
+		}
 
 		// Grab our player
 		var controller = FindObjectOfType<PlayerController>();
@@ -183,12 +216,7 @@ public class UIInGame : MonoBehaviour
 		newObject.transform.rotation = controller.transform.rotation;
 		var effect = newObject.GetComponent<SpellEffect>();
 		effect.color = color;
-
-		// Add its power
-		foreach (var s in CurrentSpell.ingredients)
-		{
-			effect.power += currentTypes[s.type];
-		}
+		effect.power = power;
 
 		// Clear our stack
 		FixIngredients();

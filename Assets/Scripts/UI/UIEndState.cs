@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class UIMain : MonoBehaviour
+public class UIEndState : MonoBehaviour
 {
+	public Text infoText;
 	public GameObject defaultObject;
 
 	public void OnEnable()
 	{
-		Invoke("DelaySelect",0.1f);
+		Invoke("DelaySelect", 0.1f);
 	}
 
 	public void DelaySelect()
@@ -19,13 +21,18 @@ public class UIMain : MonoBehaviour
 		}
 	}
 
-	public void Play()
+	public void DisplayInfo(string info)
+	{
+		infoText.text = info;
+	}
+
+	public void Restart()
 	{
 		SceneManager.LoadScene("Main");
 	}
 
-	public void Quit()
+	public void MainMenu()
 	{
-		Application.Quit();
+		SceneManager.LoadScene("Menu");
 	}
 }

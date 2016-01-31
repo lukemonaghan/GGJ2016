@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
 public class EditorManager : Editor
@@ -17,12 +19,12 @@ public class EditorManager : Editor
 		EditorApplication.isPaused = false;
 		EditorApplication.isPlaying = false;
 
-		if (EditorApplication.isSceneDirty)
+		if (SceneManager.GetActiveScene().isDirty)
 		{
-			EditorApplication.SaveCurrentSceneIfUserWantsTo();
+			EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
 		}
-		
-		EditorApplication.OpenScene("Assets/Scenes/" + sceneName + ".unity");
+
+		EditorSceneManager.OpenScene("Assets/Scenes/" + sceneName + ".unity");
 	}
 
 	[MenuItem("Vortexel/Prefab/Selection")]
@@ -31,7 +33,7 @@ public class EditorManager : Editor
 		const string PrefabLocation = "Assets/Prefabs/";
 		foreach(var o in Selection.objects)
 		{
-			string s = PrefabLocation + o.name + ".prefab";
+			var s = PrefabLocation + o.name + ".prefab";
 			PrefabUtility.CreatePrefab(s,o as GameObject);
 		}
 	}
@@ -39,21 +41,21 @@ public class EditorManager : Editor
 	[MenuItem("Vortexel/Editor/Render/OpenGL")]
 	public static void OpenOGL()
 	{
-		string activeProject = Application.dataPath.Replace("Assets","");
+		var activeProject = Application.dataPath.Replace("Assets","");
 		EditorApplication.OpenProject(activeProject, "-force-opengl", "-projectPath " + activeProject);
 	}
 
 	[MenuItem("Vortexel/Editor/Render/DirectX 9")]
 	public static void OpenDX9()
 	{
-		string activeProject = Application.dataPath.Replace("Assets","");
+		var activeProject = Application.dataPath.Replace("Assets","");
 		EditorApplication.OpenProject(activeProject, "-force-d3d9", "-projectPath " + activeProject);
 	}
 	
 	[MenuItem("Vortexel/Editor/Render/DirectX 11")]
 	public static void OpenDX11()
 	{
-		string activeProject = Application.dataPath.Replace("Assets","");
+		var activeProject = Application.dataPath.Replace("Assets","");
 		EditorApplication.OpenProject(activeProject, "-force-d3d11", "-projectPath " + activeProject);
 	}
 
@@ -95,7 +97,7 @@ public class EditorManager : Editor
     [MenuItem("Vortexel/Materials/Copy From First")]
     static void CopyFirst()
     {
-        GameObject[] objs = Selection.gameObjects;
+        var objs = Selection.gameObjects;
 
         if (objs.Length != 2)
         {
@@ -129,7 +131,7 @@ public class EditorManager : Editor
     [MenuItem("Vortexel/Materials/Copy From Last")]
     static void CopyLast()
     {
-        GameObject[] objs = Selection.gameObjects;
+        var objs = Selection.gameObjects;
 
         if (objs.Length != 2)
         {
@@ -162,7 +164,7 @@ public class EditorManager : Editor
     [MenuItem("Vortexel/Renderer/Wireframe/Hide")]
     static void HideWireframe()
     {
-        GameObject[] objs = Selection.gameObjects;
+        var objs = Selection.gameObjects;
         foreach (var obj in objs)
         {
             var rend = obj.GetComponent<Renderer>();
@@ -176,7 +178,7 @@ public class EditorManager : Editor
     [MenuItem("Vortexel/Renderer/Wireframe/Show")]
     static void ShowWireframe()
     {
-        GameObject[] objs = Selection.gameObjects;
+        var objs = Selection.gameObjects;
         foreach (var obj in objs)
         {
             var rend = obj.GetComponent<Renderer>();
@@ -214,7 +216,7 @@ public class EditorManager : Editor
 	    var product = path + PlayerSettings.productName + ".exe";
         var scenes = EditorBuildSettings.scenes;
 		var levels = new string[scenes.Length];
-		for(int i = 0; i < scenes.Length; ++i)
+		for(var i = 0; i < scenes.Length; ++i)
 		{
 			levels[i] = scenes[i].path;
 		}

@@ -8,7 +8,8 @@ public class Portal : MonoBehaviour
 		{
 			Destroy(col.gameObject);
 			UIManager.Instance.SetActiveAll(false);
-			UIManager.Instance.mainMenu.gameObject.SetActive(true);
+			UIManager.Instance.endState.gameObject.SetActive(true);
+			UIManager.Instance.endState.DisplayInfo("Congratulations!\n You escaped the witches dungeon.");
 		}
 	}
 }

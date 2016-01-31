@@ -40,7 +40,7 @@ Material:
       data:
         first:
           name: _NormalScale
-        second: 1.5
+        second: 1
       data:
         first:
           name: _Speed
@@ -48,7 +48,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.4
+        second: 0.45
       data:
         first:
           name: _Metallic
@@ -57,4 +57,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.2205882, g: 0.5484786, b: 1, a: 0.453}
+        second: {r: 0.2205882, g: 0.5484786, b: 1, a: 0.053}

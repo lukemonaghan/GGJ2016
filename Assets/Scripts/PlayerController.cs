@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : Entity
 {
@@ -7,9 +8,12 @@ public class PlayerController : Entity
 	private CharacterController _charController;
 	public Animator animator { get { return _animator ?? (_animator = GetComponentInChildren<Animator>()); } }
 	private Animator _animator;
+	public SpellController spellController { get { return _spellController ?? (_spellController = GetComponentInChildren<SpellController>()); } }
+	private SpellController _spellController;
 
 	public float speed = 10;
 	public float pushPower = 2.0f;
+	public float drag = 0.9f;
 
 	private Transform cameraForward;
 
@@ -21,15 +25,16 @@ public class PlayerController : Entity
 		OnHealthChanged += f => controller.Shake(Vector2.one * 2, 0.1f);
 	}
 
-	void Update ()
+	Vector3 direction = Vector3.zero;
+
+	void LateUpdate()
 	{
 
 		var A_1 = Input.GetAxisRaw("A_1");
-
-		var sprint = 1;
+		var sprint = 1.0f;
 		if (Mathf.Abs(A_1) > 0.01f)
 		{
-			sprint *= 2;
+			sprint *= 1.5f;
 		}
 
 		// Looking
@@ -37,28 +42,30 @@ public class PlayerController : Entity
 		var RXAxis_1 = Input.GetAxis("R_XAxis_1");
 
 		// we use the deadzone of 0.01f to stop it snapping when no axis is in. Keeps old axis.
-		if (Math.Abs(RYAxis_1) > 0.01f && Math.Abs(RXAxis_1) > 0.01f)
+		if (new Vector2(RXAxis_1,RYAxis_1).magnitude > 0.01f)
 		{
-			var angle = Mathf.Atan2(RXAxis_1, -RYAxis_1) * Mathf.Rad2Deg + cameraForward.parent.eulerAngles.y;
+			var angle = Mathf.Atan2(RXAxis_1, RYAxis_1) * Mathf.Rad2Deg + cameraForward.parent.eulerAngles.y;
 			transform.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
-		}
+			spellController.lineObject.SetActive(true);
+        }
 
 		// Movement
 		var LYAxis_1 = Input.GetAxis("L_YAxis_1");
 		var LXAxis_1 = Input.GetAxis("L_XAxis_1");
-
-		var direction = Vector3.zero;
-		direction += cameraForward.forward * sprint * speed * -LYAxis_1;
+		
+		direction += cameraForward.forward * sprint * speed * LYAxis_1;
 		direction += cameraForward.right * sprint * speed * LXAxis_1;
 
 		animator.SetFloat("Velocity",direction.normalized.magnitude);
 		// Use simplemove on the charController
 		charController.SimpleMove(direction);
+
+		direction *= drag * Time.deltaTime;
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		Rigidbody body = hit.collider.attachedRigidbody;
+		var body = hit.collider.attachedRigidbody;
 		if (body == null || body.isKinematic)
 			return;
 
@@ -72,5 +79,9 @@ public class PlayerController : Entity
 	public override void OnDeath()
 	{
 		Destroy(gameObject);
+		UIManager.Instance.SetActiveAll(false);
+		UIManager.Instance.endState.gameObject.SetActive(true);
+		UIManager.Instance.endState.DisplayInfo("Aww noo!\nYou failed to escape the witches dungeon.");
+		
 	}
 }
