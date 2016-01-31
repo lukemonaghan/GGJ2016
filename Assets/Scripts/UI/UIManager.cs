@@ -1,31 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : SingleMonoBehaviour<UIManager>
+public class UIManager : MonoBehaviour
 {
 	public GameObject splash;
 	public UIMain mainMenu;
 	public UIInGame inGameMenu;
 	public UIEndState endState;
 
+	public static UIManager Instance;
+
 	void Awake()
 	{
-		if (Instance != this)
-		{
-			DestroyImmediate(gameObject);
-			return;
-		}
-		name = "Canvas Instance";
-		DontDestroyOnLoad(gameObject);
-	}
-	void OnLevelWasLoaded()
-	{
-		Start();
-	}
-
-	void OnEnable()
-	{
-		Start();
+		Instance = this;
 	}
 
 	void Start()

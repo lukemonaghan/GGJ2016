@@ -24,7 +24,8 @@ public class UIEndState : MonoBehaviour
 	public void DisplayInfo(string info)
 	{
 		infoText.text = info;
-	}
+		Camera.main.GetComponent<CameraController>().book.SetActive(true);
+    }
 
 	public void Restart()
 	{

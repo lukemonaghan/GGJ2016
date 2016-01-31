@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
 
 	public VignetteAndChromaticAberration chromatic;
 	public Bloom bloom;
+	public GameObject book;
 
 	float chromaticDefaultValue; 
 	float bloomDefaultValue;
