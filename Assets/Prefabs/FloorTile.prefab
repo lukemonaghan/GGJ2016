@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2314652}
   - 65: {fileID: 6583584}
   m_Layer: 8
-  m_Name: FloorTile1
+  m_Name: FloorTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

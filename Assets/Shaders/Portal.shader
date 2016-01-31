@@ -3,6 +3,7 @@
 	{
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
+		[NoScaleOffset][Normal] _Normal("Normal (RGB)", 2D) = "white" {}
 
 		[NoScaleOffset][Normal] _PortalNormal1 ("Normal1 (RGB)", 2D) = "white" {}
 		[NoScaleOffset][Normal] _PortalNormal2 ("Normal2 (RGB)", 2D) = "white" {}
@@ -25,6 +26,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		sampler2D _Normal;
 
 		sampler2D _PortalNormal1;
 		sampler2D _PortalNormal2;
@@ -46,18 +48,14 @@
 			float2 uvOff = float2(_Time.g, _Time.g) * _Speed;
 
 			// Normal
+			float4 norm0  = tex2D(_Normal, IN.uv_MainTex);
 			float4 norm1 = tex2D(_PortalNormal1, IN.uv_MainTex + uvOff);
 			float4 norm2 = tex2D(_PortalNormal2, IN.uv_MainTex + uvOff * -0.5f);
-			float4 nCol = (norm1 + norm2) * 0.5f;
+			float4 nCol = (norm0 + norm1 + norm2) * 0.33f;
 			float3 norm = UnpackScaleNormal(nCol, _NormalScale);
 
 			// Color
-			fixed4 c = fixed4(0,0,0,1);
-			c += tex2D(_MainTex, IN.uv_MainTex + uvOff		  ).r;
-			c += tex2D(_MainTex, IN.uv_MainTex + uvOff * -0.5f).g;
-			c += tex2D(_MainTex, IN.uv_MainTex + uvOff *  2.0f).b;
-			c /= 3;
-			c *= _Color;
+			fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 
 			// Feed out
 			o.Albedo = c.rgb;

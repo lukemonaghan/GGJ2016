@@ -5,6 +5,7 @@ public class Ingredient : MonoBehaviour
 	bool triggerEnabled = true;
 	public Sprite sprite;
 	public GameParameters.IngredientTypes type;
+	public Color color;
 
 	public Renderer renderer { get { return _renderer ?? (_renderer = GetComponentInChildren<Renderer>()); } }
 	private Renderer _renderer;
@@ -20,7 +21,7 @@ public class Ingredient : MonoBehaviour
 
 			var spellController = c.transform.GetComponent<SpellController>();
 
-			spellController.AddColor(renderer.material.color);
+			spellController.AddColor(color);
             
 			UIManager.Instance.inGameMenu.AddIngredient(transform, sprite, type);
 

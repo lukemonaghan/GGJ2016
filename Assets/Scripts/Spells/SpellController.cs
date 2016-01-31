@@ -20,7 +20,9 @@ public class SpellController : MonoBehaviour
 	{
 		EmissionColor = Color.black;
 		SetColor();
-	}
+		var r = renderers;
+		lineObject.SetActive(false);
+    }
 
 	void Update()
 	{

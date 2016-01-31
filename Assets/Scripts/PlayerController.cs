@@ -13,7 +13,6 @@ public class PlayerController : Entity
 
 	public float speed = 10;
 	public float pushPower = 2.0f;
-	public float drag = 0.9f;
 
 	private Transform cameraForward;
 
@@ -25,7 +24,6 @@ public class PlayerController : Entity
 		OnHealthChanged += f => controller.Shake(Vector2.one * 2, 0.1f);
 	}
 
-	Vector3 direction = Vector3.zero;
 
 	void LateUpdate()
 	{
@@ -53,14 +51,13 @@ public class PlayerController : Entity
 		var LYAxis_1 = Input.GetAxis("L_YAxis_1");
 		var LXAxis_1 = Input.GetAxis("L_XAxis_1");
 		
+		Vector3 direction = Vector3.zero;
 		direction += cameraForward.forward * sprint * speed * LYAxis_1;
 		direction += cameraForward.right * sprint * speed * LXAxis_1;
 
 		animator.SetFloat("Velocity",direction.normalized.magnitude);
 		// Use simplemove on the charController
 		charController.SimpleMove(direction);
-
-		direction *= drag * Time.deltaTime;
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
