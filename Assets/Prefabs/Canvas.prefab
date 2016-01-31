@@ -1105,14 +1105,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'You''re a Cauldron that is sick of being used for rituals and magic. Escape
-    the witches house, she has casts a spell to animate all her furniture to seek
-    and destroy you before you release all her secrets.
-
-
-    Blair Duncan - Artist
-
-    Luke Monaghan - Programmer'
+  m_Text: "You're a Cauldron that is sick of being oppressed by ivy league wizard
+    scumbags. Escape the wizards tower and extract your revenge on their belongings
+    and everything in your surroundings. \n\nBlair Duncan - Artist\nLuke Monaghan
+    - Programmer"
 --- !u!114 &11494034
 MonoBehaviour:
   m_ObjectHideFlags: 1
